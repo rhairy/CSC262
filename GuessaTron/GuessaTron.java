@@ -49,10 +49,8 @@ public class GuessaTron
 		Scanner inStream = new Scanner(System.in);
 		
 		do {
-			do {
-				System.out.printf("Computer says %d. Is your number higher or lower?\n", offer);
-				input = inStream.next();
-			} while (!isValid(input));
+			System.out.printf("Computer says %d. Is your number higher or lower?\n", offer);
+                        input = inStream.next();
 
 			switch (input) {
 				case "L": 
@@ -67,9 +65,11 @@ public class GuessaTron
 					System.out.println("YOU QUIT - Thanks for playing!");
 					return;
 				default:
+					System.out.println("INVALID COMMAND - Try again.");
 					break;
 			}
 			} while (!input.equals("C"));
+
 		System.out.printf("Your number was: %d\n", offer);	
 	}
 }
