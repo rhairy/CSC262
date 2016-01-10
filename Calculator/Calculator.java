@@ -25,7 +25,7 @@ public class Calculator
 
 		/* Define variables to hold input. */
 		String input;
-		String operator;
+		String operator = "";
 		int number1;
 		int number2;
 		int result = 0;
