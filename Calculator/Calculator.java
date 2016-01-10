@@ -1,5 +1,15 @@
-/* Calculator Application. */
-
+/***********************************************************/
+// Assignment :  Calculator
+// // by: Randall Harrison
+// // Date: 2016-01-11
+// // Description: Calculate integers.
+// //  Notes: any special things you want me to consider.
+// /***********************************************************/
+// /***********************************************************/
+// /*
+// If there are any questions that need to be answered put them here as comments
+// */	   
+//
 import java.util.Scanner;
 
 public class Calculator
@@ -93,3 +103,6 @@ public class Calculator
 		System.out.printf("Your total of %d %s %d is %d.\n", number1, operator, number2, result);
 	}
 }
+///////////////////////////////////////////////////////////////////
+/////   End Of File
+/////////////////////////////////////////////////////////////////////
