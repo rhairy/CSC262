@@ -20,6 +20,16 @@ public class ParachuteDrop
 		return fps * .3048;
 	}
 
+	public static double mpsToFps(double mps)
+	{
+		return mps * 3.28084;
+	}
+
+	public static double metersToInches(double meters)
+	{
+		return meters * 39.3701;
+	}
+
 	public static double metersToFeet(double meters)
 	{
 		return meters * 3.2808;
@@ -37,25 +47,37 @@ public class ParachuteDrop
 		double mass = 0;
 
 		/* Get input. */
-		
 		Scanner inStream = new Scanner(System.in);
+		String input;
+
+		System.out.printf("Is an impact speed of %f ft/s acceptable? (y/n)", mpsToFps(3.0));
+		input = inStream.next();
+		
+		switch (input) {
+			case "y":
+				break;
+			case "n":
+				System.out.print("Enter an acceptable speed in ft/s: ");
+				velocity = fpsToMps(inStream.nextDouble());
+				break;
+			default:
+				System.out.println("INVALID INPUT.");
+				break;
+		}	
 
 		System.out.print("Enter the weight of your object in ibs: ");
 		mass = inStream.nextDouble();
 		mass = poundsToKilos(mass);
 
-		System.out.print("Enter the speed that your object needs to land at in ft/s: ");
-		velocity = inStream.nextDouble();
-		velocity = fpsToMps(velocity);
-
 		/* Perform Calculation. */
 		double chuteDiameter = parachuteDiameter(mass, velocity);
+	
+		System.out.printf("For a payload of %f ibs.\n", mass);
 
-		System.out.printf("Your chute will need to be %f feet.\n", metersToFeet(chuteDiameter));
+		System.out.printf("Your chute will need a chute of at least %f ft or %f inches.\n", metersToFeet(chuteDiameter), metersToInches(chuteDiameter));
+		System.out.printf("The payload will hit the ground at %f ft/s.\n", mpsToFps(velocity));
 	}
-
 }
-
 // 	   ///////////////////////////////////////////////////////////////////
 // 	   ///   End Of File
 // 	   ///////////////////////////////////////////////////////////////////
