@@ -43,6 +43,16 @@ public class Car
 		return this.speed;
 	}
 
+	public int getMaxSpeed()
+	{
+		return this.maxSpeed;
+	}
+
+	public int getMinSpeed()
+	{
+		return this.minSpeed;
+	}
+
 	// Public mutator methods.
 	public void accelerate()
 	{
@@ -71,7 +81,6 @@ public class Car
 		}
 	}
 
-	// public static methods.
 	public void auto()
 	{
 		// call accelerate 7 times and brake 5 times displaying the speed each time.
@@ -195,7 +204,11 @@ public class Car
 					myCar.increase();
 					break;
 				case "d":
-					myCar.decrease();
+					if ( myCar.getSpeed() > 0 ) {
+						myCar.decrease();
+					} else {
+						System.out.printf( "Stopped. Your car's maxspeed was %d; minspeed was %d.\n" ,myCar.getMaxSpeed(), myCar.getMinSpeed() );
+					}
 					break;
 				case "q":
 					break;
