@@ -105,8 +105,6 @@ public class Car
 		if ( this.speed > this.maxSpeed ) {
 			this.maxSpeed = this.speed;
 		}
-		
-		System.out.printf( "Your car's current speed is: %d.\n", this.speed );
 	}
 
 	public void decrease()
@@ -115,8 +113,6 @@ public class Car
 		if ( this.speed > 0 ) {
 			this.speed /= 4;
 		}
-
-		System.out.printf( "Your car's current speed is %d.\n", this.speed );
 	}
 
 	// Main routine to demonstrate usage of the class.
@@ -202,12 +198,14 @@ public class Car
 					break;
 				case "i":
 					myCar.increase();
+					System.out.printf( "Your car's current speed is: %d.\n", this.speed );
 					break;
 				case "d":
 					if ( myCar.getSpeed() > 0 ) {
 						myCar.decrease();
+						System.out.printf( "Your car's current speed is: %d.\n", this.speed );
 					} else {
-						System.out.printf( "Stopped. Your car's maxspeed was %d; minspeed was %d.\n" ,myCar.getMaxSpeed(), myCar.getMinSpeed() );
+						System.out.printf( "Your car's current speed is: %d.\n", this.speed );
 					}
 					break;
 				case "q":
@@ -216,5 +214,7 @@ public class Car
 					System.out.println( "INVALID INPUT." );
 			}
 		} while ( !input.equals("q") );
+	
+		System.out.printf( "Stopped. Your car's maxspeed was %d; minspeed was %d.\n" ,myCar.getMaxSpeed(), myCar.getMinSpeed() );
 	}	
 }
