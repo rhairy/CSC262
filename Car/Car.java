@@ -198,14 +198,14 @@ public class Car
 					break;
 				case "i":
 					myCar.increase();
-					System.out.printf( "Your car's current speed is: %d.\n", this.speed );
+					System.out.printf( "Your car's current speed is: %d.\n", myCar.getSpeed() );
 					break;
 				case "d":
 					if ( myCar.getSpeed() > 0 ) {
 						myCar.decrease();
-						System.out.printf( "Your car's current speed is: %d.\n", this.speed );
+						System.out.printf( "Your car's current speed is: %d.\n", myCar.getSpeed() );
 					} else {
-						System.out.printf( "Your car's current speed is: %d.\n", this.speed );
+						System.out.printf( "Your car is stopped.\n" );
 					}
 					break;
 				case "q":
