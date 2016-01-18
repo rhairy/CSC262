@@ -1,4 +1,13 @@
-// Car.java; My car class!
+/*
+// Assignment :  Car
+// by: Randall Harrison
+// // Date: 2016-01-20
+// // Description: Car class example.
+ Notes: any special things you want me to consider.
+// //***********************************************************
+// //************************************************************
+// If there are any questions that need to be answered put them here as comments
+*/
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -218,3 +227,7 @@ public class Car
 		System.out.printf( "Stopped. Your car's maxspeed was %d; minspeed was %d.\n" ,myCar.getMaxSpeed(), myCar.getMinSpeed() );
 	}	
 }
+///////////////////////////////////////////////////////////////////
+//   End Of File                                                 //
+///////////////////////////////////////////////////////////////////
+
