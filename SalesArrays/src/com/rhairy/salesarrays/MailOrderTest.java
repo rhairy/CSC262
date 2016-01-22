@@ -5,6 +5,33 @@ import java.util.Scanner;
 
 public class MailOrderTest
 {
+	// Tests a string to determine if it is a valid integer.
+	public static boolean isInt( String arg )
+	{
+		boolean result = false;
+		try {
+			Integer.parseInt( arg );
+			result = true;
+		} catch ( NumberFormatException e ) {
+			result = false;
+		}
+		
+		return result;
+	}
+	
+	// Tests a string to determine if it is a valid double.
+	public static boolean isDouble( String arg )
+	{
+		boolean result = false;
+		try {
+			Double.parseDouble(arg);
+			result = true;
+		} catch ( NumberFormatException e ) {
+			result = false;
+		}
+		return result;
+	}
+	
 	public static void main( String [] args )
 	{
 		// Introduce program.
@@ -28,17 +55,37 @@ public class MailOrderTest
 		try ( Scanner inventoryScanner = new Scanner(inventoryFile);) {
 			int lineCount = 0;
 			String line = "";
-			String [] lineSplits;
+			String [] lineSplit;
+			int ProductNum = 0;
+			double Price = 0;
+			int Qty = 0;
+			boolean lineValid;
 			
 			while ( inventoryScanner.hasNextLine() ) {
 				++lineCount;
-				if ( lineCount == 1 ) {
-					continue;
-				} else {
-					line = inventoryScanner.nextLine();
-					lineSplits = line.split(",");
-					System.out.printf( "Line %d contains: %s, %s, %s\n", lineCount, lineSplits[0], lineSplits[1], lineSplits[2] );
+				
+				// Split up data delimited by comma.
+				line = inventoryScanner.nextLine();
+				lineSplit = line.split(",");
+				
+				// Check if supplied input was valid.
+				try {
+					ProductNum = Integer.parseInt(lineSplit[0]);
+					Price = Double.parseDouble(lineSplit[1].replace('$',' '));
+					Qty = Integer.parseInt(lineSplit[2]);
+					lineValid = true;
+				} catch ( NumberFormatException e ) {
+					lineValid = false;
 				}
+				
+				if ( lineValid ) {
+					// Fill out MailOrders object with good input.
+					myOrder.FillInventory( ProductNum, Price, Qty );
+				}
+				else {
+					// Skip the bad input.
+					continue;
+				}		
 			}
 		} catch ( FileNotFoundException e) {
 			System.out.printf( "Could not find file: %s\n", filePath );
