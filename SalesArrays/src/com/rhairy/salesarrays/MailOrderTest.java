@@ -26,7 +26,20 @@ public class MailOrderTest
 		
 		// Open csv file and add it to the MailOrder object as a MyInventory object.
 		try ( Scanner inventoryScanner = new Scanner(inventoryFile);) {
-			System.out.println( "Hello World!" );
+			int lineCount = 0;
+			String line = "";
+			String [] lineSplits;
+			
+			while ( inventoryScanner.hasNextLine() ) {
+				++lineCount;
+				if ( lineCount == 1 ) {
+					continue;
+				} else {
+					line = inventoryScanner.nextLine();
+					lineSplits = line.split(",");
+					System.out.printf( "Line %d contains: %s, %s, %s\n", lineCount, lineSplits[0], lineSplits[1], lineSplits[2] );
+				}
+			}
 		} catch ( FileNotFoundException e) {
 			System.out.printf( "Could not find file: %s\n", filePath );
 		}
