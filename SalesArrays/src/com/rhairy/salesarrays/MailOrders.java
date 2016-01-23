@@ -20,7 +20,7 @@ public class MailOrders
 		inventory.add( temp );
 	}
 	
-	// Purchase Qty of ProductNum.
+	// No need to be implented due to the spec requiring getInventoryItem to return a reference to a MyInventory object.
 	public MyInventory ProcessOrder( int ProductNum, int Qty )
 	{
 		return null;

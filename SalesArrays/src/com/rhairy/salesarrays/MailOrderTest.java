@@ -6,30 +6,30 @@ import java.util.Scanner;
 
 public class MailOrderTest
 {
-	// Tests a string to determine if it is a valid integer.
-	public static boolean isInt( String arg )
-	{
-		boolean result = false;
-		try {
-			Integer.parseInt( arg );
-			result = true;
-		} catch ( NumberFormatException e ) {
-			result = false;
-		}
+	// Gets an integer input.
+	public static int getIntRepeat( String promptMsg, String errorMsg )
+	{	
+		Scanner inputScanner = new Scanner(System.in);
+		int result = 0;
+		boolean valid = true;
+			
+		do {
+			
+			try {
+				
+			System.out.printf( "%s", promptMsg );
+			result = inputScanner.nextInt();
+			valid = true;
+			
+			} catch ( InputMismatchException e ) {
+				
+				valid = false;
+				System.out.printf( "%s\n", errorMsg );
+				inputScanner.next();			
+			}
+			
+		} while ( !valid );
 		
-		return result;
-	}
-	
-	// Tests a string to determine if it is a valid double.
-	public static boolean isDouble( String arg )
-	{
-		boolean result = false;
-		try {
-			Double.parseDouble(arg);
-			result = true;
-		} catch ( NumberFormatException e ) {
-			result = false;
-		}
 		return result;
 	}
 	
@@ -103,19 +103,8 @@ public class MailOrderTest
 			// Print Inventory List.
 			myOrder.displayInventory();
 			
-			// Get ProductNum input.
-			do {
-				try {
-					System.out.print( "Enter a product number or -99 to quit: ");
-					ProductNumAnswer = inputScanner.nextInt();
-					isValid = true;
-				} catch ( InputMismatchException e ) {
-					isValid = false;
-					System.out.println( "Invalid Input - You must enter an integer." );
-					System.out.println( "" );
-					inputScanner.next();
-				}
-			} while ( !isValid );
+			// Get ProductNum.
+			ProductNumAnswer = getIntRepeat( "Enter a product number or -99 to quit: ", "Invalid Input - You must enter an integer." );
 			
 			if ( ProductNumAnswer == -99 ) {
 				break;
@@ -133,21 +122,7 @@ public class MailOrderTest
 					System.out.println( "" );
 					
 					// Ask for an amount to order.
-					// This could be turned into a method.
-					isValid = true;
-					do {
-						try {
-							System.out.print( "Enter quantity ordered: ");
-							quantity = inputScanner.nextInt();
-							isValid = true;
-						} catch ( InputMismatchException e ) {
-							isValid = false;
-							System.out.println( "Invalid Input - You must enter an integer." );
-							System.out.println( "" );
-							inputScanner.next();
-						}
-					} while ( !isValid );
-					// This could be turned into a method.
+					quantity = getIntRepeat( "Enter a quantity ordered: ", "Invalid Input - You must enter an integer." );
 					
 					// If the quantity requested is greater than the quantity available, give them the quantity available.
 					if ( quantity > product.getQty() ) {
