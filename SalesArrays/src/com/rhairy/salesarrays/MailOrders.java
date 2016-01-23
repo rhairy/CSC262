@@ -20,6 +20,7 @@ public class MailOrders
 		inventory.add( temp );
 	}
 	
+	// Purchase Qty of ProductNum.
 	public MyInventory ProcessOrder( int ProductNum, int Qty )
 	{
 		return null;
@@ -36,5 +37,16 @@ public class MailOrders
 			}
 		}
 		return null;
+	}
+	
+	// Print inventory items to the screen.
+	public void displayInventory()
+	{
+		for ( MyInventory i : inventory ) {
+			System.out.println( "***" );
+			System.out.printf( "Product Number: %d \n", i.getProductNum() );
+			System.out.printf( "Price: $%f \n", i.getPrice() );
+			System.out.printf( "Quantity: %d \n", i.getQty() );
+		}
 	}
 }
