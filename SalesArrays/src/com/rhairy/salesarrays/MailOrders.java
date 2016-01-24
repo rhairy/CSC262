@@ -20,10 +20,14 @@ public class MailOrders
 		inventory.add( temp );
 	}
 	
-	// No need to be implented due to the spec requiring getInventoryItem to return a reference to a MyInventory object.
-	public MyInventory ProcessOrder( int ProductNum, int Qty )
+	
+	public void ProcessOrder( int ProductNum, int Qty )
 	{
-		return null;
+		MyInventory product = new MyInventory();
+		
+		product = getInventoryItem( ProductNum );
+		
+		product.UpdateQty( product.getQty() - Qty );
 	}
 	
 	// Iterate through the ArrayList and return the MyInventory object with the provided ProductNum.
@@ -49,4 +53,44 @@ public class MailOrders
 			System.out.printf( "Quantity: %d \n", i.getQty() );
 		}
 	}
+	
+	// Determine if a product is in the inventory.
+	public boolean doesProductExist( int ProductNum )
+	{
+		boolean result;
+		for ( MyInventory i : inventory ) {
+			if ( i.getProductNum() == ProductNum ) {
+				return true;
+			} else {
+				continue;
+			}
+		}
+		return false;
+	}
+	
+	// Get the inventory Qty of a product.
+	public int getProductQty( int ProductNum )
+	{
+		for ( MyInventory i : inventory ) {
+			if ( i.getProductNum() == ProductNum ) {
+				return i.getQty();
+			} else {
+				continue;
+			}
+		}
+		return -1;
+	}
+	
+	public double getProductPrice( int ProductNum )
+	{
+		for ( MyInventory i : inventory ) {
+			if ( i.getProductNum() == ProductNum ) {
+				return i.getPrice();
+			} else {
+				continue;
+			}
+		}
+		return -1;
+	}
+	
 }

@@ -1,3 +1,14 @@
+/***********************************************************
+// Assignment :  SalesArray
+// by: Randall Harrison
+// Date: 2016-01-25
+// Description: Reads an inventory from a csv file and allows the user to make purchases.
+//  Notes: any special things you want me to consider.
+//***********************************************************
+//************************************************************
+If there are any questions that need to be answered put them here as comments
+*/
+
 import com.rhairy.salesarrays.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,6 +42,15 @@ public class MailOrderTest
 		} while ( !valid );
 		
 		return result;
+	}
+	
+	// Prompt the user to press enter to continue.
+	public static void pressEnter()
+	{
+		Scanner inputScanner = new Scanner(System.in);
+		
+		System.out.print( "Press enter to Continue...");
+		inputScanner.nextLine();
 	}
 	
 	public static void main( String [] args )
@@ -102,6 +122,7 @@ public class MailOrderTest
 			
 			// Print Inventory List.
 			myOrder.displayInventory();
+			pressEnter();
 			
 			// Get ProductNum.
 			ProductNumAnswer = getIntRepeat( "Enter a product number or -99 to quit: ", "Invalid Input - You must enter an integer." );
@@ -111,43 +132,46 @@ public class MailOrderTest
 			}
 		
 			// Check if the ProductNum is in the inventory.
-			MyInventory product = new MyInventory();
-			product = myOrder.getInventoryItem(ProductNumAnswer);
+			if ( myOrder.doesProductExist(ProductNumAnswer) ) {
 				
-			if ( product != null ) {
 				// Display the unit price and quantity available.
-				if ( product.getQty() > 0 ) {
-					System.out.printf( "Unit Price: %f \n", product.getPrice() );
-					System.out.printf( "Quantity Available: %d \n", product.getQty() );
+				if ( myOrder.getProductQty( ProductNumAnswer ) > 0 ) {
+					System.out.printf( "Unit Price: %f \n",  myOrder.getProductPrice(ProductNumAnswer) );
+					System.out.printf( "Quantity Available: %d \n", myOrder.getProductQty(ProductNumAnswer) );
 					System.out.println( "" );
 					
 					// Ask for an amount to order.
 					quantity = getIntRepeat( "Enter a quantity ordered: ", "Invalid Input - You must enter an integer." );
 					
 					// If the quantity requested is greater than the quantity available, give them the quantity available.
-					if ( quantity > product.getQty() ) {
-						quantity = product.getQty();
+					if ( quantity > myOrder.getProductQty(ProductNumAnswer) ) {
+						quantity = myOrder.getProductQty(ProductNumAnswer);
 					}
 					
 					// Update the quantity of the item.
-					product.UpdateQty( product.getQty() - quantity );
+					myOrder.ProcessOrder( ProductNumAnswer, quantity );
 					
 					// Print out the quantity sold.
 					System.out.printf( "Quantity Sold: %d \n", quantity );
 					
 					// Update itemAmount and print it to the screen.
-					itemAmount = quantity * product.getPrice();
+					itemAmount = quantity * myOrder.getProductPrice(ProductNumAnswer);
 					System.out.printf( "Item Amount: $%f\n", itemAmount );
 					
 					// Update the orderAmount.
 					orderAmount += itemAmount;
+					
+					pressEnter();
 
 				} else {
 					System.out.println( "That item is out of stock. Please pick another one." );
+					pressEnter();
 				}
 			} else {
 				System.out.println( "Could not find the product" );
+				pressEnter();
 			}
+			
 		}
 		// Display order total and say goodbye.
 		System.out.println( "***" );
@@ -156,3 +180,7 @@ public class MailOrderTest
 		System.out.println( "Goodbye" );
 	}
 }
+
+///////////////////////////////////////////////////////////////////
+///   End Of File												///
+///////////////////////////////////////////////////////////////////
