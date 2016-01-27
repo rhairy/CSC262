@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -47,16 +48,25 @@ public class Gui extends JPanel
 		// Initialize the JLabels.
 		firstLabel = new JLabel("Welcome to GuessaTron I will guess your number ");
 		firstLabel.setAlignmentX(firstLabel.CENTER_ALIGNMENT);
+		
 		secondLabel = new JLabel("Between 1 - 100");
 		secondLabel.setAlignmentX(secondLabel.CENTER_ALIGNMENT);
+		
 		thirdLabel = new JLabel("Is your Number Higher Or Lower Than?");
 		thirdLabel.setAlignmentX(thirdLabel.CENTER_ALIGNMENT);
+		
 		offerLabel = new JLabel("> " + Integer.toString(offer) + " <");
 		offerLabel.setForeground(Color.RED);
 		offerLabel.setAlignmentX(offerLabel.CENTER_ALIGNMENT);
+		// Increase the font size and make bold.
+		offerLabel.setFont(new Font("Serif", Font.BOLD, 16));
+
 		bragLabel = new JLabel("");
 		bragLabel.setAlignmentX(bragLabel.CENTER_ALIGNMENT);
+		// Make the color red.
 		bragLabel.setForeground(Color.RED);
+	
+
 		
 		
 		// Add the JButtons to the buttonPanel.
