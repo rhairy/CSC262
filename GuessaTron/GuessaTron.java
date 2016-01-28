@@ -48,7 +48,7 @@ public class GuessaTron
 
 		Scanner inStream = new Scanner(System.in);
 		
-		System.out.println("Welcome to “GuessaTron” the smartest computer program in the world.");
+		System.out.println("Welcome to GuessaTron the smartest computer program in the world.");
 		System.out.println("I am going to guess the number you chose as long as it is between 1 and 100.");
 		System.out.println("You will think I am reading your mind.");
 		

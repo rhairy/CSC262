@@ -5,7 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Gui extends JPanel
-{
+				 implements ActionListener {
+					 
 	private int high, low, offer;
 	private JButton higherButton, lowerButton, yesButton, resetButton;
 	private JLabel firstLabel, secondLabel, thirdLabel, offerLabel, bragLabel;
@@ -40,10 +41,10 @@ public class Gui extends JPanel
 		resetButton.setActionCommand("Reset");
 		
 		// Set their EventListeners.
-		higherButton.addActionListener(new ButtonListener());
-		lowerButton.addActionListener(new ButtonListener());
-		yesButton.addActionListener(new ButtonListener());
-		resetButton.addActionListener(new ButtonListener());
+		higherButton.addActionListener(this);
+		lowerButton.addActionListener(this);
+		yesButton.addActionListener(this);
+		resetButton.addActionListener(this);
 		
 		// Initialize the JLabels.
 		firstLabel = new JLabel("Welcome to GuessaTron I will guess your number ");
@@ -112,41 +113,40 @@ public class Gui extends JPanel
 		createAndShowGUI();
 	}
 
-	private class ButtonListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e) {
-			String command = e.getActionCommand();  
-			if( command.equals( "Higher" ))  {
-				low = offer;
-				offer = (low + high) / 2;
-				offerLabel.setText("> " + Integer.toString(offer) + " <");
-			} else if( command.equals( "Lower" ) )  {
-				high = offer;
-				offer = (low + high) / 2;
-				offerLabel.setText("> " + Integer.toString(offer) + " <");
-			} else if ( command.equals("Yes") ) {
-				// Brag that you have guessed their answer.
-				bragLabel.setText("I told you I would get the answer Ha Ha!");
-				
-				// Disable buttons.
-				yesButton.setEnabled(false);
-				higherButton.setEnabled(false);
-				lowerButton.setEnabled(false);
-			} else  {
-				// Reset buttons and variables to their defaults.
-				offer = 50;
-				low = 1;
-				high = 100;
-				offerLabel.setText("> " + Integer.toString(offer) + " <");
-				
-				// Hide the bragLabel.
-				bragLabel.setText("");
-				
-				// Enable the input buttons if they are disabled.
-				yesButton.setEnabled(true);
-				higherButton.setEnabled(true);
-				lowerButton.setEnabled(true);
-			}  	
-		}		
-	}
+	
+	public void actionPerformed(ActionEvent e) {
+		String command = e.getActionCommand();  
+		if( command.equals( "Higher" ))  {
+			low = offer;
+			offer = (low + high) / 2;
+			offerLabel.setText("> " + Integer.toString(offer) + " <");
+		} else if( command.equals( "Lower" ) )  {
+			high = offer;
+			offer = (low + high) / 2;
+			offerLabel.setText("> " + Integer.toString(offer) + " <");
+		} else if ( command.equals("Yes") ) {
+			// Brag that you have guessed their answer.
+			bragLabel.setText("I told you I would get the answer Ha Ha!");
+			
+			// Disable buttons.
+			yesButton.setEnabled(false);
+			higherButton.setEnabled(false);
+			lowerButton.setEnabled(false);
+		} else  {
+			// Reset buttons and variables to their defaults.
+			offer = 50;
+			low = 1;
+			high = 100;
+			offerLabel.setText("> " + Integer.toString(offer) + " <");
+			
+			// Hide the bragLabel.
+			bragLabel.setText("");
+			
+			// Enable the input buttons if they are disabled.
+			yesButton.setEnabled(true);
+			higherButton.setEnabled(true);
+			lowerButton.setEnabled(true);
+		}  	
+	}		
+
 }
