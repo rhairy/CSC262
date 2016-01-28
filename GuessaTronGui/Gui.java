@@ -1,3 +1,13 @@
+/***********************************************************
+// Assignment :  GuessaTronGui Final Project
+// by: Randall Harrison
+// Date: 2016-01-29
+// Description: GuessaTron in a window!
+//  Notes: any special things you want me to consider.
+//***********************************************************
+//************************************************************
+If there are any questions that need to be answered put them here as comments
+*/
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
@@ -148,5 +158,7 @@ public class Gui extends JPanel
 			lowerButton.setEnabled(true);
 		}  	
 	}		
-
 }
+///////////////////////////////////////////////////////////////////
+///   End Of File
+///////////////////////////////////////////////////////////////////
