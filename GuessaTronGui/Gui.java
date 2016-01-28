@@ -94,7 +94,7 @@ public class Gui extends JPanel
 	}
 	
 	public static void createAndShowGUI() {
-		JFrame frame = new JFrame("GuessaTron(TM)");
+		JFrame frame = new JFrame("GuessaTron Final Project");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(350, 200);
 		
